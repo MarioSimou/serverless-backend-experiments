@@ -1,0 +1,17 @@
+{
+  "extends": "lib/configuration/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@types": ["./src/features/types/index.ts"],
+      "@features/*": ["./src/features/*"]
+    }
+  },
+  "include": [
+    "global.d.ts",
+    "next-env.d.ts",
+    "./src/**/*.ts",
+    "./src/**/*.tsx"
+  ],
+  "exclude": ["node_modules"]
+}

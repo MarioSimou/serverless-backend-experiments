@@ -1,0 +1,18 @@
+{
+  "title": "customers",
+  "properties": {
+    "_id": {
+      "bsonType": "objectId"
+    },
+    "username": {
+      "bsonType": "string"
+    },
+    "email": {
+      "bsonType": "string"
+    },
+    "password": {
+      "bsonType": "string"
+    }
+  },
+  "required": ["username", "email", "password"]
+}

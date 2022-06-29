@@ -1,0 +1,37 @@
+[
+    {
+        "name": "putTodoEndpoint",
+        "private": false,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "deleteTodo",
+        "private": false,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "deleteTodoEndpoint",
+        "private": false,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "getTodo",
+        "private": false,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "getTodos",
+        "private": false,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "getTodosEndpoint",
+        "private": false,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "putTodo",
+        "private": false,
+        "disable_arg_logs": true
+    }
+]

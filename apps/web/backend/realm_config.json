@@ -1,0 +1,9 @@
+{
+    "app_id": "todo-list-zphzc",
+    "config_version": 20210101,
+    "name": "todo-list",
+    "location": "IE",
+    "provider_region": "aws-eu-west-1",
+    "deployment_model": "LOCAL",
+    "environment": "development"
+}
