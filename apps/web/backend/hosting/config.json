@@ -1,4 +1,6 @@
 {
-    "enabled": false,
-    "app_default_domain": "todo-list-zphzc.mongodbstitch.com"
+  "enabled": true,
+  "app_default_domain": "todo-list-zphzc.mongodbstitch.com",
+  "default_response_code": 200,
+  "default_error_path": "/404.html"
 }

@@ -5,13 +5,16 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": ["dist/**", "files/**"]
     },
     "lint": {
       "outputs": []
     },
     "start:dev": {
       "cache": false
+    },
+    "deploy": {
+      "dependsOn": ["build"]
     }
   }
 }

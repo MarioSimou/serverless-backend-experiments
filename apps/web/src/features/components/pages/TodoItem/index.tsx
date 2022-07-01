@@ -5,7 +5,7 @@ import { GET_TODO, DELETE_TODO, GET_TODOS } from '@features/realm'
 import Link from 'next/link'
 import { useQuery, useMutation } from '@apollo/client'
 
-const TodoItem: Page = () => {
+const Todo: Page = () => {
   const router = useRouter()
   const id = router.query.id as string | undefined
   const {
@@ -55,4 +55,4 @@ const TodoItem: Page = () => {
   )
 }
 
-export default TodoItem
+export default Todo

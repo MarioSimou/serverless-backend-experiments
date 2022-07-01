@@ -9,8 +9,10 @@
   "scripts": {
     "build": "turbo run build",
     "start:dev": "turbo run start:dev --parallel",
+    "deploy": "turbo run deploy",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prettier:check": "prettier \"**/*.{ts,tsx,md}\"",
+    "prettier:format": "pnpm prettier:check --write",
     "clean": "rm -rf node_modules 2> /dev/null && turbo run clean --parallel"
   },
   "devDependencies": {

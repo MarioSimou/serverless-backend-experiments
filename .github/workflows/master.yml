@@ -1,0 +1,72 @@
+name: Master Pipeline
+on:
+  push:
+    branches:
+      - todo_app_graphql
+
+env:
+  NODE_VERSION: lts/gallium
+  NEXT_PUBLIC_GRAPHQL_API: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API }}
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-20.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install Dependencies
+        run: |
+          npm i --location=global pnpm
+          pnpm i
+
+      - name: Lint
+        run: pnpm prettier:check && pnpm lint
+
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Dependencies
+        run: |
+          npm i --location=global pnpm
+          pnpm i
+
+      - name: Build
+        env:
+          NEXT_PUBLIC_APP_ID: ${{ secrets.APP_ID }}
+        run: pnpm build
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-20.04
+    timeout-minutes: 10
+    needs: [lint, build]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Dependencies
+        run: npm i --location=global mongodb-realm-cli pnpm && pnpm i
+
+      - name: Configure realm-cli Credentials
+        env:
+          PUBLIC_API_KEY: ${{ secrets.PUBLIC_API_KEY }}
+          PRIVATE_API_KEY: ${{ secrets.PRIVATE_API_KEY }}
+        run: realm-cli login --api-key $PUBLIC_API_KEY --private-api-key $PRIVATE_API_KEY
+
+      - name: Deploy
+        env:
+          NEXT_PUBLIC_APP_ID: ${{ secrets.APP_ID }}
+          APP_ID: ${{ secrets.APP_ID }}
+        run: pnpm deploy

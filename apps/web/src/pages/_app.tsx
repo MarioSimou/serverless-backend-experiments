@@ -1,6 +1,6 @@
 import React from 'react'
 import type { AppProps as NextAppProps } from 'next/app'
-import { AuthProvider, AppTodosProvider } from '@features/providers'
+import { AuthProvider } from '@features/providers'
 import { MainLayout } from '@features/components/shared'
 import '@features/components/shared/MainLayout/global.css'
 import type { Page, Nullable } from '@types'
@@ -11,6 +11,14 @@ import {
   InMemoryCache,
 } from '@apollo/client'
 import { newRealm } from '@features/realm'
+
+const NEXT_PUBLIC_GRAPHQL_API = process.env.NEXT_PUBLIC_GRAPHQL_API
+
+if (!NEXT_PUBLIC_GRAPHQL_API) {
+  throw new Error(
+    "Please provide a valid configuration for 'NEXT_PUBLIC_GRAPHQL_API'"
+  )
+}
 
 const getCurrentUserAccessToken = async (): Promise<Nullable<string>> => {
   const { app } = newRealm()
@@ -25,7 +33,7 @@ const getCurrentUserAccessToken = async (): Promise<Nullable<string>> => {
 
 const apolloClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://eu-west-1.aws.realm.mongodb.com/api/client/v2.0/app/todo-list-zphzc/graphql',
+    uri: process.env.NEXT_PUBLIC_GRAPHQL_API,
     fetch: async (uri, options) => {
       const { headers, ...rest } = options ?? {}
       const currentUserAccessToken = await getCurrentUserAccessToken()

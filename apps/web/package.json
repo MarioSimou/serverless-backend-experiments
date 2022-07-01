@@ -5,9 +5,10 @@
   "scripts": {
     "start:dev": "next dev",
     "start:prod": "next start",
-    "build": "next build",
+    "build": "rm -rf ./backend/hosting/files 2>/dev/null && next build && next export -o ./backend/hosting/files",
     "lint": "next lint",
-    "clean": "rm -rf node_modules 2> /dev/null"
+    "clean": "rm -rf node_modules 2> /dev/null",
+    "deploy": "realm-cli push --remote todo-list-prod-gokqt --local ./backend --include-hosting --reset-cdn-cache --yes"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",

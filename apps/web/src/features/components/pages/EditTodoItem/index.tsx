@@ -4,7 +4,7 @@ import { useFormValues } from '@features/hooks'
 import { useRouter } from 'next/router'
 import { Field } from '@features/components/shared'
 import { useQuery, useMutation } from '@apollo/client'
-import { GET_TODO, UPDATE_TODO, GET_TODOS } from '@features/realm'
+import { GET_TODO, UPDATE_TODO } from '@features/realm'
 
 const EditTodoItem: Page = () => {
   const router = useRouter()
